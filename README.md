@@ -5,7 +5,25 @@
 移植 Yii 项目架构
 
 ```bash
+# 目录结构
 
+\---assets
+    \--- scripts
+    \--- styles
++---bin
++---config
++---controllers
++---middlewares
++---models
++---tests
++---views
++---web
+\---widgets
+    \---news
+
+```
+
+````bash
 # 组件
 widgets -> components
 
