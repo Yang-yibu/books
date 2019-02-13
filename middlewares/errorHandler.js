@@ -1,5 +1,18 @@
 module.exports = {
-  error(app) {
+  error(app, logger) {
+    app.use(async (ctx, next) => {
+      try {
+        await next();
+      } catch (error) {
+        console.log(error);
+
+        logger.error(error);
+
+        ctx.status = 500;
+        ctx.body = "o(╥﹏╥)o"
+      }
+    });
+
     app.use(async (ctx, next) => {
       await next();
 

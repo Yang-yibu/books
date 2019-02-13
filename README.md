@@ -72,3 +72,7 @@ ssr: 后端的数据直接吐到页面中
 
 nodejs 容错
 
+
+# 其他错误捕捉方式
+# app.on('error')
+# process.on

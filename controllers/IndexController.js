@@ -3,6 +3,9 @@ class IndexController {
   
   actionsIndex() {
     return async (ctx, next) => {
+      // 导致服务器内部错误
+      indexModels();
+
       ctx.body = 'hello'
     }
   }

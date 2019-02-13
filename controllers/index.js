@@ -9,7 +9,7 @@ module.exports = (app) => {
     // _.get('/', (ctx, next) => {
       // ctx.body = 'hello'
     // })
-  
+
     _.get('/', indexController.actionsIndex())
     _.get('/index', indexController.actionsIndex())
 
