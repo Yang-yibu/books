@@ -4,7 +4,7 @@ class IndexController {
   actionsIndex() {
     return async (ctx, next) => {
       // 导致服务器内部错误
-      indexModels();
+      // indexModels();
 
       ctx.body = 'hello'
     }
@@ -12,7 +12,9 @@ class IndexController {
 
   actionsView() {
     return async (ctx, next) => {
-      ctx.body = await ctx.render('index');
+      ctx.body = await ctx.render('index', {
+        data: 'hello Yn'
+      });
     }
   }
 }

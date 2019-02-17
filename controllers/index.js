@@ -1,7 +1,9 @@
 const router = require('koa-simple-router');
 const IndexController = require('./IndexController');
+const TestController = require('./TestController');
 
 const indexController = new IndexController();
+const testController = new TestController;
 
 // 路由注册中心
 module.exports = (app) => {
@@ -11,7 +13,8 @@ module.exports = (app) => {
     // })
 
     _.get('/', indexController.actionsIndex())
-    _.get('/index', indexController.actionsIndex())
+    _.get('/index.html', indexController.actionsIndex()); // 伪静态页面
+    _.get('/test', testController.actionsIndex());
 
     _.get('/view', indexController.actionsView())
 

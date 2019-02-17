@@ -1,16 +1,20 @@
 const Koa = require('koa');
 const app = new Koa();
 const path = require('path');
-const co = require('co');
-const render = require('koa-swig');
-const serve = require('koa-static');
+const co = require('co'); // 处理 Generator (yield)函数 成 async
+const render = require('koa-swig'); // 模板引擎
+const serve = require('koa-static'); // 静态资源中间件
+const log4js = require('log4js'); // 日志
 const errorHandler = require('./middlewares/errorHandler');
-const log4js = require('log4js');
+const config = require('./config/index');
 
-app.use(serve(__dirname + '/assets'))
+// 静态资源中间件
+// app.use(serve(__dirname + '/assets'))
+app.use(serve(config.staticDir))
 
 app.context.render = co.wrap(render({
-  root: path.join(__dirname, 'views'),
+  // root: path.join(__dirname, 'views'),
+  root: path.join(config.viewDir),
   autoescape: true,
   cache: 'memory',
   ext: 'html',
@@ -28,6 +32,6 @@ errorHandler.error(app, logger);
 // 注入路由机制
 require('./controllers')(app);
 
-app.listen(3000, () => {
+app.listen(config.port, () => {
   console.log('server running 3000');
 })

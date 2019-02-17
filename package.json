@@ -7,9 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=development nodemon app.js",
-    "docs": "jsdoc \"**/*.js\" -d ./docs/jsdocs",
+    "docs": "jsdoc ./models/index.js -d ./docs/jsdocs",
     "docsw": "node build/docs.js",
     "qq": "echo $npm_package_name",
     "qqw": "echo %npm_package_name%"

@@ -7,15 +7,18 @@
 ```bash
 # 目录结构
 
++--- assetsproject # 项目中的其他说明资源
+
 \---assets
     \--- scripts
     \--- styles
 +---bin
 +---config
-+---controllers
++---controllers   # 控制器 路由的具体实现
 +---middlewares
 +---models
 +---tests
++---util         # 工具包
 +---views
 +---web
 \---widgets
@@ -23,7 +26,7 @@
 
 ```
 
-````bash
+```bash
 # 组件
 widgets -> components
 
@@ -70,9 +73,22 @@ npm: koa2-connect-history-api-fallback
 
 ssr: 后端的数据直接吐到页面中
 
-nodejs 容错
+### nodejs 容错
+
+其他错误捕捉方式
+```bash
+app.on('error')
+process.on
+```
+
+### 使用 jsdoc 生成 `/Docs` API 文档
+
+主要用于 `models`
+`/docs/jsdocs/`
+
+![生成的 docs 示例 1](/assetsproject/docs_1.png)
+![生成的 docs 示例 2](/assetsproject/docs_2.png)
 
 
-# 其他错误捕捉方式
-# app.on('error')
-# process.on
+`deno`  node 的一个版本
+> 兼容浏览器，能够把浏览器的API在后台跑，API 统一
