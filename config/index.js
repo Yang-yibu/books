@@ -9,6 +9,7 @@ let config = {
 
 if (process.env.NODE_ENV == "development") {
   const localConfig = {
+    baseURL: 'http://localhost:8080/web/index.php?r=',
     port: 3000
   }
   config = _.extend(config, localConfig);
@@ -16,6 +17,7 @@ if (process.env.NODE_ENV == "development") {
 
 if (process.env.NODE_ENV == "production") {
   const prodConfig = {
+    baseURL: '',
     port: 8081
   }
   config = _.extend(config, prodConfig);

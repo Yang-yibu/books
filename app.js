@@ -16,7 +16,7 @@ app.context.render = co.wrap(render({
   // root: path.join(__dirname, 'views'),
   root: path.join(config.viewDir),
   autoescape: true,
-  cache: 'memory',
+  cache: 'memory', // swig 高效：会在一段时间内缓存模板
   ext: 'html',
   writeBody: false
 }));

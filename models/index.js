@@ -3,7 +3,7 @@
  * @author Yn
  */
 
-const SafeRequest = require('../utils/');
+const SafeRequest = require('../utils/SafeRequest');
 
 /**
  * Index 类 获取后台关于图书相关的数据类
@@ -27,7 +27,9 @@ class Index {
    */
   getData(options) {
     // TODO: 请求后台数据
-    return {};
+    const safeRequest = new SafeRequest('books/index');
+
+    return safeRequest.fetch({});
   }
 }
 
