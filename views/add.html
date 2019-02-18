@@ -1,0 +1,21 @@
+{% extends './layout.html' %}
+
+{% block title %}新增新闻{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/styles/index.css">
+{% endblock %}
+
+{% block content %}
+<!-- 内容放入模板中 -->
+<div id="app"></div>
+
+{% include '../components/news/add.html' %}
+
+<script src="/scripts/add.js"></script>
+{% endblock %}
+
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.6/dist/vue.js"></script>
+{% endblock %}

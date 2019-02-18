@@ -17,7 +17,7 @@ class IndexController {
     ctx.body = 'hhhhh'
   }
 
-  actionsView() {
+  actionsList() {
     return async (ctx, next) => {
       const index = new Index();
       const result = await index.getData();
@@ -27,6 +27,12 @@ class IndexController {
       ctx.body = await ctx.render('index', {
         data: result.data
       });
+    }
+  }
+  actionsAdd() {
+    // 只吐个壳 交给 Vue 渲染
+    return async (ctx, next) => {
+      ctx.body = await ctx.render('add')
     }
   }
 }

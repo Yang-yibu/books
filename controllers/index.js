@@ -16,7 +16,8 @@ module.exports = (app) => {
     _.get('/index.html', indexController.actionsIndex()); // 伪静态页面
     _.get('/test', testController.actionsIndex());
 
-    _.get('/view', indexController.actionsView())
+    _.get('/list', indexController.actionsList());
+    _.get('/add', indexController.actionsAdd());
 
   }))
 }

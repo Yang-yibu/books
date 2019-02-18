@@ -18,6 +18,7 @@ app.context.render = co.wrap(render({
   autoescape: true,
   cache: 'memory', // swig 高效：会在一段时间内缓存模板
   ext: 'html',
+  varControls: ["[[", "]]"], // 自定义模板语法标记
   writeBody: false
 }));
 
