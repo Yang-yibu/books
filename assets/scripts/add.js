@@ -16,6 +16,7 @@ class Create {
   fn() {
     this.btn.click(function () {
       alert(1);
+      console.log(1)
     })
   }
 }

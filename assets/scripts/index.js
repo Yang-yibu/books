@@ -6,5 +6,5 @@ fetch('/test').then(res => {
   // return res;
 }).then(res => {
   console.log('fetch data: \n', res);
-  document.getElementById('app').innerHTML = res.data
+  // document.getElementById('app').innerHTML = res.data
 })

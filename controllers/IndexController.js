@@ -25,7 +25,8 @@ class IndexController {
 
       // SSR
       ctx.body = await ctx.render('index', {
-        data: result.data
+        data: result.data,
+        title: '新闻列表'
       });
     }
   }
