@@ -18,6 +18,7 @@ module.exports = (app) => {
 
     _.get('/list', indexController.actionsList());
     _.get('/add', indexController.actionsAdd());
+    _.get('/save', indexController.actionsSave());
 
   }))
 }

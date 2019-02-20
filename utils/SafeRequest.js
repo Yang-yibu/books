@@ -9,6 +9,13 @@ class SafeRequest {
 
   fetch(opt) {
     let yFetch = fetch(this.baseURL + this.url);
+    console.log('opt: ', opt);
+    if (opt.params) {
+      yFetch = fetch(this.baseURL + this.url, {
+        method: opt.methods ,
+        body: opt.params
+      })
+    }
 
     return new Promise((resolve, reject) => {
       let result = {
@@ -20,6 +27,8 @@ class SafeRequest {
       yFetch
         .then(res => res.json())
         .then((json) => {
+          console.log('Safe-suc: \n', json);
+          
           result.data = json;
           resolve(result);
         }).catch(err => {

@@ -14,10 +14,10 @@ class Create {
   }
 
   fn() {
-    this.btn.click(function () {
-      alert(1);
+    this.btn.click( yn.throttle( function () {
+      fetch('/aaa')
       console.log(1)
-    })
+    }, 1000))
   }
 }
 
