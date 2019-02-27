@@ -1,4 +1,5 @@
-const Koa = require('koa');
+import Koa from 'koa';
+// const Koa = require('koa');
 const app = new Koa();
 const path = require('path');
 const co = require('co'); // 处理 Generator (yield)函数 成 async
