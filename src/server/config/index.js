@@ -9,6 +9,11 @@ let config = {
   "staticDir": join(__dirname, "..", "assets")
 }
 
+// 会被清洗掉
+if (false) {
+  var a = 1;
+}
+
 if (process.env.NODE_ENV == "development") {
   const localConfig = {
     baseURL: 'http://localhost:8080/web/index.php?r=',

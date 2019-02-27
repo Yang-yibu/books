@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 const watch = require('gulp-watch'); // 检测文件变化
 const rollup = require('gulp-rollup'); // 流清晰
+const replace = require('rollup-plugin-replace')
 
 let entry = './src/server/**/*.js';
 
@@ -37,7 +38,19 @@ function buildLint() {
 
 // 清洗环境
 function buildConfig() {
-  return '';
+  return gulp.src(entry)
+    .pipe(rollup({
+      output: {
+        format: 'cjs'
+      },
+      plugins: [
+        replace({
+          ENVIRONMENT: JSON.stringify('production')
+        })
+      ],
+      input: './src/server/config/index.js',
+    }))
+    .pipe(gulp.dest('dist'))
 }
 
 // development
@@ -50,7 +63,7 @@ let build = gulp.series(buildDev, buildConfig);
 if (process.env.NODE_ENV === 'prod') {
   // 上线的时候可能：buildLint, buildProd, buildConfig
   // 保证线上代码质量
-  build = gulp.series(buildProd);
+  build = gulp.series(buildProd, buildConfig);
 }
 if (process.env.NODE_ENV === 'lint') {
   build = gulp.series(buildLint);
