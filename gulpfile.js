@@ -3,6 +3,7 @@ const babel = require('gulp-babel');
 const watch = require('gulp-watch'); // 检测文件变化
 const rollup = require('gulp-rollup'); // 流清晰
 const replace = require('rollup-plugin-replace')
+const eslint = require('gulp-eslint');
 
 let entry = './src/server/**/*.js';
 
@@ -33,7 +34,10 @@ function buildProd() {
 
 // 代码检查
 function buildLint() {
-
+  return gulp.src(entry)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
 }
 
 // 清洗环境
