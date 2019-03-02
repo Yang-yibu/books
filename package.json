@@ -13,7 +13,6 @@
     "docsw": "node build/docs.js",
     "qq": "echo $npm_package_name",
     "qqw": "echo %npm_package_name%",
-    "d": "cross-env NODE_ENV=dev gulp",
     "server:dev": "scripty",
     "server:prod": "scripty",
     "server:lint": "scripty"

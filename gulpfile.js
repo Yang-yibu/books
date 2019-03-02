@@ -45,7 +45,10 @@ function buildConfig() {
       },
       plugins: [
         replace({
-          ENVIRONMENT: JSON.stringify('production')
+          // ENVIRONMENT: JSON.stringify('production')
+          
+          // 想要替换的值
+          'process.env.NODE_ENV': JSON.stringify('production')
         })
       ],
       input: './src/server/config/index.js',
@@ -54,13 +57,13 @@ function buildConfig() {
 }
 
 // development
-if (process.env.NODE_ENV === 'dev') {
+if (process.env.NODE_ENV === 'development') {
 
 }
 let build = gulp.series(buildDev, buildConfig);
 
 // production
-if (process.env.NODE_ENV === 'prod') {
+if (process.env.NODE_ENV === 'production') {
   // 上线的时候可能：buildLint, buildProd, buildConfig
   // 保证线上代码质量
   build = gulp.series(buildProd, buildConfig);

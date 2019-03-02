@@ -1,2 +1,2 @@
 # Gulp 开发环境配置 develoment
-cross-env NODE_ENV=dev gulp
+cross-env NODE_ENV=develpoment gulp
