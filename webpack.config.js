@@ -43,7 +43,17 @@ for (let item of files) {
 }
 // console.log(_entry);
 console.log(_plugins);
-// module.exports = {
-  // entry: _entry,
-  // ..._plugins
-// }
+let webpackConfig = {
+  entry: _entry,
+  output: {
+    path: path.join(__dirname, './dist/assets'),
+    publicPath: '/',
+    filename: 'scripts/[name].bundle.js' // 输出的文件名
+  },
+  plugins: [
+    ..._plugins
+  ]
+}
+
+// 将内外的 webpack 配置合并在一起
+module.exports = merge(webpackConfig, _mergeConfig);
