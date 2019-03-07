@@ -1,8 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const argv = require('yargs-parser')(process.argv.slice(2));
-// console.log('argv: ', argv);
-// console.log(process.argv);
+console.log('argv: ', argv);
+console.log(process.argv);
 
 const _mode = argv.mode || 'development';
 console.log('用户得到的模式：', _mode);
@@ -12,6 +12,7 @@ const merge = require('webpack-merge');
 
 const glob = require('glob');
 const files = glob.sync('./src/web/views/**/*.entry.js');
+const HtmlAfterWebpackPlugin = require('./config/HtmlAfterWebpackPlugin');
 
 // console.log('files: \n', files);
 // [ './src/web/views/books/books-add.entry.js',
@@ -35,14 +36,14 @@ for (let item of files) {
 
     const [ dist, template ] = entryKey.split('-');
     _plugins.push(new HtmlWebpackPlugin({
-      filename: `views/${dist}/pages/${template}.html`, // 指定输出文件的路径及名字
+      filename: `../views/${dist}/pages/${template}.html`, // 指定输出文件的路径及名字
       template: `src/web/views/${dist}/pages/${template}.html`,
       inject: false
     }))
   }
 }
 // console.log(_entry);
-console.log(_plugins);
+// console.log(_plugins);
 let webpackConfig = {
   entry: _entry,
   output: {
@@ -51,7 +52,8 @@ let webpackConfig = {
     filename: 'scripts/[name].bundle.js' // 输出的文件名
   },
   plugins: [
-    ..._plugins
+    ..._plugins,
+    new HtmlAfterWebpackPlugin(),
   ]
 }
 

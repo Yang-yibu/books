@@ -1,11 +1,13 @@
 .vscode
+.idea
 
 node_modules
 
+/distCopy
 /dist
-!/dist/assets
-!/dist/components
-!/dist/views
+# !/dist/assets
+# !/dist/components
+# !/dist/views
 
 **/docs/
 **/logs/
