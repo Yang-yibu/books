@@ -38,6 +38,7 @@ for (let item of files) {
     _plugins.push(new HtmlWebpackPlugin({
       filename: `../views/${dist}/pages/${template}.html`, // 指定输出文件的路径及名字
       template: `src/web/views/${dist}/pages/${template}.html`,
+      chunks: [entryKey], // 没有的话，会把所有的静态资源打包进去
       inject: false
     }))
   }
