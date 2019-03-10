@@ -13,14 +13,15 @@ const merge = require('webpack-merge');
 const glob = require('glob');
 const files = glob.sync('./src/web/views/**/*.entry.js');
 const HtmlAfterWebpackPlugin = require('./config/HtmlAfterWebpackPlugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // console.log('files: \n', files);
 // [ './src/web/views/books/books-add.entry.js',
-  // './src/web/views/books/books-list.entry.js'
+// './src/web/views/books/books-list.entry.js'
 // ] ==>
 // {
-    // "books-add": "./src/web/views/books/books-add.entry.js",
-    // "books-list": './src/web/views/books/books-list.entry.js'
+// "books-add": "./src/web/views/books/books-add.entry.js",
+// "books-list": './src/web/views/books/books-list.entry.js'
 // }
 
 let _entry = {};
@@ -30,11 +31,11 @@ for (let item of files) {
   // 使用 path 模块解析路径，再截掉 .entry.js
   // console.log(path.parse(item));
 
-  if ( /.+\/([a-zA-Z]+-[a-zA-Z]+)(\.entry\.js)$/g.test(item) == true ) {
+  if (/.+\/([a-zA-Z]+-[a-zA-Z]+)(\.entry\.js)$/g.test(item) == true) {
     const entryKey = RegExp.$1;
     _entry[entryKey] = item;
 
-    const [ dist, template ] = entryKey.split('-');
+    const [dist, template] = entryKey.split('-');
     _plugins.push(new HtmlWebpackPlugin({
       filename: `../views/${dist}/pages/${template}.html`, // 指定输出文件的路径及名字
       template: `src/web/views/${dist}/pages/${template}.html`,
@@ -55,10 +56,22 @@ let webpackConfig = {
   module: {
     rules: [{
       test: /\.css$/,
-      use: ['style-loader', 'css-loader']
+      use: [{
+        loader: MiniCssExtractPlugin.loader,
+      }, 'css-loader']
     }]
   },
+  // module: {
+  // rules: [{
+  //   test: /\.css$/,
+  //   use: ['style-loader', 'css-loader']
+  // }]
+  // },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'styles/[name].css',
+      chunkFilename: 'styles/[id].css'
+    }),
     ..._plugins,
     new HtmlAfterWebpackPlugin(),
   ]

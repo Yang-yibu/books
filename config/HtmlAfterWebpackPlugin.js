@@ -45,7 +45,7 @@ class HtmlAfterWebpackPlugin {
         
         // 注入静态资源
         _html = _html.replace('<!--injectjs-->', result.js.join(''));
-        // _html = _html.replace('<!--injectcss-->', result.css.join(''));
+        _html = _html.replace('<!--injectcss-->', result.css.join(''));
         htmlPluginData.html = _html;
       })
     })
