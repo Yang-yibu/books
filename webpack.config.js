@@ -1,8 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const argv = require('yargs-parser')(process.argv.slice(2));
-console.log('argv: ', argv);
-console.log(process.argv);
+// console.log('argv: ', argv);
+// console.log(process.argv);
 
 const _mode = argv.mode || 'development';
 console.log('用户得到的模式：', _mode);
@@ -51,6 +51,12 @@ let webpackConfig = {
     path: path.join(__dirname, './dist/assets'),
     publicPath: '/',
     filename: 'scripts/[name].bundle.js' // 输出的文件名
+  },
+  module: {
+    rules: [{
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
+    }]
   },
   plugins: [
     ..._plugins,

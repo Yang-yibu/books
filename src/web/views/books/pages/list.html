@@ -1,4 +1,4 @@
-{% extends './layout.html' %}
+{% extends 'pages:common/layout.html' %}
 
 {% block title %}新闻系统列表{% endblock %}
 
@@ -8,7 +8,7 @@
 
 {% block content %}
 
-  {% include '../components/list/list.html' %}
+  {% include 'components:list/list.html' %}
 
 {% endblock %}
 

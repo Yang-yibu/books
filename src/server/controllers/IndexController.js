@@ -27,7 +27,7 @@ class IndexController {
       console.log('IndexController - getData: ', result);
 
       // SSR
-      ctx.body = await ctx.render('index', {
+      ctx.body = await ctx.render('books/pages/list', {
         data: result.data,
         title: '新闻列表'
       });
@@ -37,7 +37,7 @@ class IndexController {
 
     // 只吐个壳 交给 Vue 渲染
     return async (ctx, next) => {
-      ctx.body = await ctx.render('add')
+      ctx.body = await ctx.render('books/pages/add')
     }
   }
   actionsSave() {

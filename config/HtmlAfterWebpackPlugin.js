@@ -2,19 +2,23 @@
 const pluginName = 'HtmlAfterWebpackPlugin';
 
 const assetsHelp = (data) => {
-  let js = [];
+  let js = [], css = [];
   const dir = {
-    js: item => `<script src='${item}'></script>`
+    js: item => `<script src='${item}'></script>`,
+    css: item => `<link rel="stylesheet" href='${item}'>`
   }
 
   for (let jsItem of data.js) {
     js.push(dir.js(jsItem))
   }
-  return { js };
+  for (let cssItem of data.css) {
+    css.push(dir.css(cssItem))
+  }
+  return { js, css };
 }
 
 /**
- * 1. 何时才能拦截最后生成的 swig
+ * 1. 何时才能拦截最后生成的 swig(html)
  * 2. 如何分清这个 swig 文件对应的 JS 和 CSS
  */
 class HtmlAfterWebpackPlugin {
@@ -34,8 +38,14 @@ class HtmlAfterWebpackPlugin {
         // console.log(htmlPluginData);
         let _html = htmlPluginData.html;
         const result = assetsHelp(htmlPluginData.assets);
+        
+        // 配置资源别名
+        _html = _html.replace('pages:', '../../');
+        _html = _html.replace('components:', '../../../components/');
+        
+        // 注入静态资源
         _html = _html.replace('<!--injectjs-->', result.js.join(''));
-        console.log('html--------------------',_html);
+        _html = _html.replace('<!--injectcss-->', result.css.join(''));
         htmlPluginData.html = _html;
       })
     })
