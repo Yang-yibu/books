@@ -40,12 +40,12 @@ class HtmlAfterWebpackPlugin {
         const result = assetsHelp(htmlPluginData.assets);
         
         // 配置资源别名
-        _html = _html.replace('pages:', '../../');
-        _html = _html.replace('components:', '../../../components/');
+        _html = _html.replace(/pages:/g, '../../');
+        _html = _html.replace(/components:/g, '../../../components/');
         
         // 注入静态资源
         _html = _html.replace('<!--injectjs-->', result.js.join(''));
-        _html = _html.replace('<!--injectcss-->', result.css.join(''));
+        // _html = _html.replace('<!--injectcss-->', result.css.join(''));
         htmlPluginData.html = _html;
       })
     })
